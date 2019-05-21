@@ -36,32 +36,32 @@ For example:
 (extjwnl/lookup-index-word dict
                            "noun"
                            "pit"
-                           '[:word/lemma
-                             {:word/pos [:pos/label]}
-                             {:word/senses [{:synset/words [:word/lemma]}
+                           '[:index-word/lemma
+                             {:index-word/pos [:pos/label]}
+                             {:index-word/senses [{:synset/words [:word/lemma]}
                                             {:synset/pos [:pos/label]}]}])
-;; => #:word{:lemma "pit", :pos #:pos{:label "noun"}, :senses [...] ...}
+;; => #:index-word{:lemma "pit", :pos #:pos{:label "noun"}, :senses [...] ...}
 
 
 ;; that was too much, same thing with a limit of 1 on select attributes
 (extjwnl/lookup-index-word dict
                            "noun"
                            "pit"
-                           '[:word/lemma
-                             {:word/pos [:pos/label]}
-                             {(:word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
+                           '[:index-word/lemma
+                             {:index-word/pos [:pos/label]}
+                             {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
                                                        {:synset/pos [:pos/label]}]}])
-;; => #:word{:lemma "pit", :pos #:pos{:label "noun"}, :senses [...] ...}
+;; => #:index-word{:lemma "pit", :pos #:pos{:label "noun"}, :senses [...] ...}
 
 
 ;; use the same query but a vector containing all parts of speech for 'pit'
 (extjwnl/lookup-all-index-words dict
                                 "pit"
-                                '[:word/lemma
-                                  {:word/pos [:pos/label]}
-                                  {(:word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
+                                '[:index-word/lemma
+                                  {:index-word/pos [:pos/label]}
+                                  {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
                                                             {:synset/pos [:pos/label]}]}]) 
-;; [#:word{:lemma "pit", :pos #:pos{:label "noun"}, :senses [...] ...]
+;; [#:index-word{:lemma "pit", :pos #:pos{:label "noun"}, :senses [...] ...]
 ```
 
 ## License
