@@ -14,7 +14,7 @@ For direct Java interop usage, see
 Add dependency to your project:
 
 ```clojure
-[net.zakak/clj-extjwnl "0.1.0-SNAPSHOT"]
+[net.zakak/clj-extjwnl "0.1.1-SNAPSHOT"]
 ```
 
 ## Usage
