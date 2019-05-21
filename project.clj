@@ -1,4 +1,4 @@
-(defproject net.zakak/clj-extjwnl "0.1.0-SNAPSHOT"
+(defproject net.zakak/clj-extjwnl "0.1.1-SNAPSHOT"
   :description "Clojure wrapper for extJWNL (Extended Java WordNet Library) Java API."
   :url "https://github.com/zakak/clj-extjwnl"
   :license {:name "Eclipse Public License - v 2.0"
