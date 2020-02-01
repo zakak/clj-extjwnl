@@ -6,12 +6,12 @@
             Pointer
             PointerType
             Synset)
-           (net.sf.extjwnl.dictionary Dictionary))
-  (:require [clojure.string :as str]))
+           (net.sf.extjwnl.dictionary Dictionary)))
 
 (def ^:private default-map-element-opts {:limit 1000})
 
-(defn default-dictionary []
+(defn default-dictionary
+  []
   (Dictionary/getDefaultResourceInstance))
 
 ;; ## Elements
@@ -64,51 +64,65 @@
 
 ;; ## Element types
 
-(defmethod -keyword-element :identity [_ el]
+(defmethod -keyword-element :identity
+  [_ el]
   el)
 
-(defmethod -map-element :index-word/pos [{:keys [index-word/pos]} ^IndexWord el]
+(defmethod -map-element :index-word/pos
+  [{:keys [index-word/pos]} ^IndexWord el]
   (elements (.getPOS el) pos))
 
-(defmethod -map-element :index-word/senses [{:keys [index-word/senses opts]} ^IndexWord el]
+(defmethod -map-element :index-word/senses
+  [{:keys [index-word/senses opts]} ^IndexWord el]
   (mapv #(elements % senses)
         (take (:limit opts) (.getSenses el))))
 
-(defmethod -keyword-element :index-word/lemma [_ ^IndexWord el]
+(defmethod -keyword-element :index-word/lemma
+  [_ ^IndexWord el]
   (.getLemma el))
 
-(defmethod -keyword-element :pointer-type/label [_ ^PointerType el]
+(defmethod -keyword-element :pointer-type/label
+  [_ ^PointerType el]
   (.getLabel el))
 
-(defmethod -map-element :pointer/synset [{:keys [pointer/synset]} ^Pointer el]
+(defmethod -map-element :pointer/synset
+  [{:keys [pointer/synset]} ^Pointer el]
   (elements (.getTargetSynset el)
             synset))
 
-(defmethod -map-element :pointer/type [{:keys [pointer/type]} ^Pointer el]
+(defmethod -map-element :pointer/type
+  [{:keys [pointer/type]} ^Pointer el]
   (elements (.getType el)
             type))
 
-(defmethod -keyword-element :pos/label [_ ^POS el]
+(defmethod -keyword-element :pos/label
+  [_ ^POS el]
   (.getLabel el))
 
-(defmethod -keyword-element :synset/gloss [_ ^Synset el]
+(defmethod -keyword-element :synset/gloss
+  [_ ^Synset el]
   (.getGloss el))
 
-(defmethod -map-element :synset/pointers [{:keys [synset/pointers opts]} ^Synset el]
+(defmethod -map-element :synset/pointers
+  [{:keys [synset/pointers opts]} ^Synset el]
   (mapv #(elements % pointers)
         (take (:limit opts) (.getPointers el))))
 
-(defmethod -map-element :synset/pos [{:keys [synset/pos]} ^Synset el]
+(defmethod -map-element :synset/pos
+  [{:keys [synset/pos]} ^Synset el]
   (elements (.getPOS el) pos))
 
-(defmethod -map-element :synset/words [{:keys [synset/words opts]} ^Synset el]
+(defmethod -map-element :synset/words
+  [{:keys [synset/words opts]} ^Synset el]
   (mapv #(elements % words)
         (take (:limit opts) (.getWords el))))
 
-(defmethod -keyword-element :word/lemma [_ ^Word el]
+(defmethod -keyword-element :word/lemma
+  [_ ^Word el]
   (.getLemma el))
 
-(defmethod -map-element :word/pos [{:keys [word/pos]} ^Word el]
+(defmethod -map-element :word/pos
+  [{:keys [word/pos]} ^Word el]
   (elements (.getPOS el) pos))
 
 ;; ## Main

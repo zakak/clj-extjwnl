@@ -1,5 +1,5 @@
 (ns net.zakak.clj-extjwnl-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [clojure.test :refer [deftest is]]
             [net.zakak.clj-extjwnl :refer [default-dictionary
                                            lookup-index-word
                                            lookup-all-index-words]]))
