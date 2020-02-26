@@ -8,7 +8,7 @@
             Synset)
            (net.sf.extjwnl.dictionary Dictionary)))
 
-(def ^:private default-map-element-opts {:limit 1000})
+(def ^:dynamic *map-element-opts* {:limit 1000})
 
 (defn default-dictionary
   []
@@ -30,7 +30,7 @@
   (let [k (ffirst m)]
     [k
      (-map-element {:key  k
-                    :opts default-map-element-opts
+                    :opts *map-element-opts*
                     k     (get m k)}
                    el)]))
 
@@ -39,7 +39,7 @@
   [m el]
   (let [coll (ffirst m)
         k    (first coll)
-        opts (merge default-map-element-opts (apply hash-map (rest coll)))]
+        opts (merge *map-element-opts* (apply hash-map (rest coll)))]
     [(get opts :as k) 
      (-map-element {:key  k 
                     :opts opts
