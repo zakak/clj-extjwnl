@@ -1,6 +1,7 @@
 (ns net.zakak.clj-extjwnl-test
   (:require [clojure.test :refer [deftest is]]
             [net.zakak.clj-extjwnl :refer [default-dictionary
+                                           lookup
                                            lookup-index-word
                                            lookup-all-index-words]]))
 
@@ -52,3 +53,22 @@
                                    {:index-word/pos [:pos/label]}
                                    {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
                                                                    {:synset/pos [:pos/label]}] }]))))
+
+
+(comment
+  (lookup-all-index-words
+   dict
+   "dog"
+   '[{:index-word/pos [:pos/label]}])
+
+  (lookup-index-word
+   dict
+   "verb"
+   "dog"
+   '[{:index-word/senses [:synset/gloss]}])
+
+  (second (lookup
+           dict
+           '[{:index-word/pos [:pos/label]}
+             {:index-word/senses [:synset/gloss]}]
+           "dog")))

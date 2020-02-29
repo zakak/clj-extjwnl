@@ -142,3 +142,8 @@
                                   (throw (Exception. (str "Unknown part of speech (pos): '" pos "'"))))
                               lemma)
             query))
+
+(defn lookup
+  "Use dict to look up lemma using query"
+  [^Dictionary dict query lemma]
+  (lookup-all-index-words dict lemma query))
