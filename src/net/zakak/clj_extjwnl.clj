@@ -127,23 +127,18 @@
 
 ;; ## Main
 
-(defn lookup-all-index-words
-  "Use dict to look up lemma using query"
-  [^Dictionary dict lemma query]
-  (->> (.lookupAllIndexWords dict lemma)
-       (.getIndexWordCollection)
-       (mapv #(elements % query))))
-
-(defn lookup-index-word
-  "Use dict to look up lemma using pos and query"
-  [^Dictionary dict pos lemma query]
+(defn lookup-by-pos
+  "Use dict to look up lemma using data pattern and part of speech"
+  [^Dictionary dict data-pattern lemma pos]
   (elements (.lookupIndexWord dict
                               (or (POS/getPOSForLabel pos)
                                   (throw (Exception. (str "Unknown part of speech (pos): '" pos "'"))))
                               lemma)
-            query))
+            data-pattern))
 
 (defn lookup
-  "Use dict to look up lemma using query"
-  [^Dictionary dict query lemma]
-  (lookup-all-index-words dict lemma query))
+  "Use dict to look up lemma using data pattern"
+  [^Dictionary dict data-pattern lemma]
+  (->> (.lookupAllIndexWords dict lemma)
+       (.getIndexWordCollection)
+       (mapv #(elements % data-pattern))))

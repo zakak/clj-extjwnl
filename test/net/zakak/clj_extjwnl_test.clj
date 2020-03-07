@@ -2,8 +2,7 @@
   (:require [clojure.test :refer [deftest is]]
             [net.zakak.clj-extjwnl :refer [default-dictionary
                                            lookup
-                                           lookup-index-word
-                                           lookup-all-index-words]]))
+                                           lookup-by-pos]]))
 
 (def dict (default-dictionary))
 
@@ -28,18 +27,19 @@
                                         {:word/pos [:pos/label]}]}
                         {:synset/pos [:pos/label]}]}])
 
-(deftest lookup-index-word-test
+(deftest lookup-by-pos-test
   (is (= {:index-word/lemma  "pit"
           :index-word/pos    {:pos/label "noun"}
           :index-word/senses [{:synset/words [{:word/lemma "pit"}]
                                :synset/pos   {:pos/label "noun"}}]}
-         (lookup-index-word dict "noun" "pit"
-                            '[:index-word/lemma
-                              {:index-word/pos [:pos/label]}
-                              {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
-                                                              {:synset/pos [:pos/label]}] }]))))
+         (lookup-by-pos dict
+                          '[:index-word/lemma
+                            {:index-word/pos [:pos/label]}
+                            {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
+                                                            {:synset/pos [:pos/label]}]}]
+                          "pit" "noun"))))
 
-(deftest lookup-all-index-words-test
+(deftest lookup-test
   (is (= [{:index-word/lemma  "pit"
            :index-word/pos    {:pos/label "noun"}
            :index-word/senses [{:synset/words [{:word/lemma "pit"}]
@@ -48,25 +48,15 @@
            :index-word/pos    {:pos/label "verb"}
            :index-word/senses [{:synset/words [{:word/lemma "pit"}]
                                 :synset/pos   {:pos/label "verb"}}]}]
-         (lookup-all-index-words dict "pit"
-                                 '[:index-word/lemma
-                                   {:index-word/pos [:pos/label]}
-                                   {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
-                                                                   {:synset/pos [:pos/label]}] }]))))
+         (lookup dict
+                 '[:index-word/lemma
+                   {:index-word/pos [:pos/label]}
+                   {(:index-word/senses :limit 1) [{(:synset/words :limit 1) [:word/lemma]}
+                                                   {:synset/pos [:pos/label]}] }]
+                 "pit"))))
 
 
 (comment
-  (lookup-all-index-words
-   dict
-   "dog"
-   '[{:index-word/pos [:pos/label]}])
-
-  (lookup-index-word
-   dict
-   "verb"
-   "dog"
-   '[{:index-word/senses [:synset/gloss]}])
-
   (let [pos (-> (lookup dict
                         '[{:index-word/pos [:pos/label
                                             :identity]}]
@@ -74,11 +64,10 @@
                 first
                 :index-word/pos)]
     {:label (:pos/label pos)
-     :id   (.getId (:identity pos))})
+     :id    (.getId (:identity pos))})
 
   (second (lookup
            dict
            '[{:index-word/pos [:pos/label]}
              {:index-word/senses [:synset/gloss]}]
-           "dog"))
-)
+           "dog")))
