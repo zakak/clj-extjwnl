@@ -67,8 +67,18 @@
    "dog"
    '[{:index-word/senses [:synset/gloss]}])
 
+  (let [pos (-> (lookup dict
+                        '[{:index-word/pos [:pos/label
+                                            :identity]}]
+                        "dog")
+                first
+                :index-word/pos)]
+    {:label (:pos/label pos)
+     :id   (.getId (:identity pos))})
+
   (second (lookup
            dict
            '[{:index-word/pos [:pos/label]}
              {:index-word/senses [:synset/gloss]}]
-           "dog")))
+           "dog"))
+)
