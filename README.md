@@ -18,13 +18,13 @@ library
 [deps.edn](https://clojure.org/guides/deps_and_cli) dependency:
 
 ```clojure
-{net.zakak/clj-extjwnl {:mvn/version "0.1.1-SNAPSHOT"}}
+{net.zakak/clj-extjwnl {:mvn/version "0.1.2-SNAPSHOT"}}
 ```
 
 [Leiningen](https://github.com/technomancy/leiningen) dependency:
 
 ```clojure
-[net.zakak/clj-extjwnl "0.1.1-SNAPSHOT"]
+[net.zakak/clj-extjwnl "0.1.2-SNAPSHOT"]
 ```
 
 ## Usage
