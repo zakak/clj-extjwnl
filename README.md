@@ -4,11 +4,14 @@ clj-extjwnl provides an API for querying
 [WordNet](https://wordnet.princeton.edu/) using data patterns inspired
 by [Datomic pull](https://docs.datomic.com/on-prem/pull.html).
 
-It is a Clojure wrapper for the
-Extended Java WordNet Library ([extJWNL](https://github.com/extjwnl/extjwnl)).
+It is a Clojure wrapper for a subset of the
+Extended Java WordNet Library
+([extJWNL](https://github.com/extjwnl/extjwnl)) that provides
+[easy access](#identity) to the underlying library.
 
-For direct Java interop usage, see
-[the wiki](https://github.com/zakak/clj-extjwnl/wiki/Using-the-Extended-Java-WordNet-Library-from-Clojure).
+If you'd like to use Java interop with extJWNL without using a wrapper
+library
+[see the wiki](https://github.com/zakak/clj-extjwnl/wiki/Using-the-Extended-Java-WordNet-Library-from-Clojure).
 
 ## Installation
 
@@ -29,10 +32,10 @@ For direct Java interop usage, see
 The primary functions are:
 
 * default-dictionary - creates an instance of a WordNet dictionary
-* lookup - retrieves word data from the dictionary using a pattern
+* lookup - retrieves word data from the dictionary using a data pattern
 
-Lookup accepts an [edn](https://github.com/edn-format/edn) pattern
-describing the data to be retrieved.
+Lookup accepts an [edn](https://github.com/edn-format/edn) data
+pattern describing the data to be retrieved.
 
 An example:
 
