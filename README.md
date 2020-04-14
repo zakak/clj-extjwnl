@@ -9,7 +9,7 @@ Extended Java WordNet Library
 ([extJWNL](https://github.com/extjwnl/extjwnl)) that provides
 [easy access](#identity) to the underlying library.
 
-[See the wiki](https://github.com/zakak/clj-extjwnl/wiki/Using-the-Extended-Java-WordNet-Library-from-Clojure) 
+[See this post](https://www.zakak.net/blog/2019-using-wordnet-from-clojure/)
 if you'd like to use Java interop without a wrapper
 library.
 
