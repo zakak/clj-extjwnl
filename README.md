@@ -9,7 +9,7 @@ Extended Java WordNet Library
 ([extJWNL](https://github.com/extjwnl/extjwnl)) that provides
 [easy access](#identity) to the underlying library.
 
-[See this post](https://www.zakak.net/blog/2019-using-wordnet-from-clojure/)
+[See this post](https://www.zakak.net/blog/2019-using-wordnet-with-clojure/)
 if you'd like to use Java interop without a wrapper
 library.
 
@@ -128,9 +128,3 @@ interop directly for features not covered by data patterns.
    :id   (.getId (:identity pos))})
 ;; => {:label "noun", :id 1}
 ```
-
-## License
-
-Copyright © 2020 Zak Kriner
-
-Distributed under the Eclipse Public License version 2.0.
